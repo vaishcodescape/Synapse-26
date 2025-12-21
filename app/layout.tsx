@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,9 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Synapse' 26",
-  description: "DA Ka Tyohaar",
+  title: "SYNAPSE'26 | DA Ka Tyohaar",
+  description: "SYNAPSE'26 - The Ultimate Tech Festival. Register now for the most anticipated event of the year.",
+  keywords: ["synapse", "tech fest", "college fest", "2026", "technology", "events"],
+  openGraph: {
+    title: "SYNAPSE'26",
+    description: "The Ultimate Tech Festival",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,9 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} antialiased bg-black`}
       >
         {children}
       </body>

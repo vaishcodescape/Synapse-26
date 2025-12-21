@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { NextResponse } from 'next/server'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function checkAdmin(supabase: any) {
   const { data: { user } } = await supabase.auth.getUser()
   
@@ -15,7 +16,8 @@ async function checkAdmin(supabase: any) {
 }
 
 export async function GET() {
-  const supabase = await createClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createClient() as any
 
   if (!await checkAdmin(supabase)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
@@ -40,7 +42,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const supabase = await createClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createClient() as any
 
   if (!await checkAdmin(supabase)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
