@@ -10,7 +10,7 @@ module.exports = {
         // Add other custom colors as needed
       },
       fontFamily: {
-        card: ['CardCharacters', 'sans-serif'],
+        card: ['CardCharacter', 'sans-serif'],
       },
     },
   },
