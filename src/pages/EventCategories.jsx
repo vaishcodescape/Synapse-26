@@ -30,7 +30,7 @@ const EventCategories = () => {
     description: '',
   });
 
-  const [previewImage, setPreviewImage] = useState(null); // local preview
+  const [previewImage, setPreviewImage] = useState(null);
   const [editingId, setEditingId] = useState(null);
 
   const handleImageChange = (e) => {
@@ -67,7 +67,6 @@ const EventCategories = () => {
 
     setFormData({ name: '', description: '' });
     setPreviewImage(null);
-    // optionally clear file input using ref if you want
   };
 
   const handleEdit = (category) => {
@@ -133,7 +132,7 @@ const EventCategories = () => {
               {/* Image upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Category Image (optional)
+                  Category Image (for frontend card)
                 </label>
                 <input
                   type="file"
@@ -147,16 +146,6 @@ const EventCategories = () => {
                     hover:file:bg-indigo-100
                     border border-gray-300 rounded-lg cursor-pointer"
                 />
-                {previewImage && (
-                  <div className="mt-3">
-                    <p className="text-xs text-gray-500 mb-1">Preview:</p>
-                    <img
-                      src={previewImage}
-                      alt="Category preview"
-                      className="h-24 w-24 object-cover rounded-md border"
-                    />
-                  </div>
-                )}
               </div>
 
               <button
@@ -179,8 +168,47 @@ const EventCategories = () => {
           </div>
         </div>
 
-        {/* Categories List */}
-        <div className="lg:col-span-2">
+        {/* Right side: Preview + List */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Live Card Preview (like frontend card) */}
+          <div className="bg-white rounded-lg shadow p-4">
+            <h2 className="text-lg font-semibold mb-4">Card Preview</h2>
+            <div className="flex justify-center">
+              {/* Outer wrapper scaled down but same ratio (700x600) */}
+              <div className="relative w-full max-w-[457px] aspect-[457/640] rounded-xl overflow-hidden shadow-lg bg-black">
+                {/* Background image (your card.png equivalent) */}
+                <img
+                  src={previewImage || '/card.png'}
+                  alt="Card background"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                {/* If you want the category image on top like your example’s back face, overlay it here */}
+                {previewImage && (
+                  <div className="absolute inset-0">
+                    <img
+                      src={previewImage}
+                      alt="Category"
+                      className="w-full h-full object-cover opacity-90"
+                    />
+                  </div>
+                )}
+
+                {/* Text at bottom center like .card-text */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/70 rounded-md">
+                  <span className="text-white text-lg md:text-2xl font-semibold tracking-wide">
+                    {formData.name || 'Category Name'}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-xs text-gray-500 text-center">
+              This is how your image + category name will roughly look in the frontend card
+              (scaled down here, original size ~457x640).
+            </p>
+          </div>
+
+          {/* Categories List */}
           <div className="bg-white rounded-lg shadow">
             <div className="p-6 border-b">
               <h2 className="text-xl font-semibold">All Categories</h2>
@@ -191,7 +219,7 @@ const EventCategories = () => {
                   key={category.id}
                   className="border rounded-lg p-4 hover:shadow-md transition flex gap-4"
                 >
-                  {/* Image thumbnail */}
+                  {/* Thumbnail */}
                   {category.imageUrl ? (
                     <img
                       src={category.imageUrl}
