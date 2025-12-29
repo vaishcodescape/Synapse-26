@@ -59,6 +59,8 @@ export default function OTPPage() {
       <div className="relative hidden w-1/2 lg:block">
         <Image src="/joker.jpg" alt="Joker Card" fill className="object-cover" priority />
         {/* Dice Logo */}
+        {/* <CHANGE> added horizontal gradient overlay to soften the boundary between image and form */}
+
        <div className="absolute top-8 left-8 z-10">
                  <div className="relative w-16 h-16">
                    <Image
@@ -70,6 +72,7 @@ export default function OTPPage() {
                    />
                  </div>
                </div>
+               <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-r from-transparent to-black pointer-events-none" />
       </div>
 
       {/* Right Side - OTP Form */}
