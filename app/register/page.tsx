@@ -41,24 +41,20 @@ export default function RegisterPage() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-8 lg:p-12">
         <div className="w-full max-w-[582px] space-y-8">
           {/* Header */}
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 font-joker">
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider"
-              style={{
-                fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-                letterSpacing: "0.05em",
-              }}
+              className="text-3xl md:text-4xl lg:text-4xl font-joker text-white tracking-wider"
             >
-              THE CARDS ARE DEALT
+              the cards are dealt
               <br />
-              JOIN IN
+              join in
             </h1>
           </div>
 
           {/* Registration Form Card */}
           <Card className="bg-black/40 border-white/20 backdrop-blur-sm">
             <CardHeader className="pb-6">
-              <CardTitle className="text-2xl text-white text-center">
+              <CardTitle className="text-2xl text-white text-center font-roboto">
                 Create Your Account
               </CardTitle>
             </CardHeader>
@@ -84,7 +80,7 @@ export default function RegisterPage() {
               {/* Phone Number */}
               <div className="flex gap-3">
                 <div className="relative w-32">
-                  <select className="w-full h-12 px-3 bg-transparent border border-white/50 rounded-md text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white appearance-none font-card">
+                  <select className="w-full h-12 px-3 bg-transparent border border-white/50 rounded-md text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white appearance-none font-roboto">
                     <option value="91" className="bg-black">INR (+91)</option>
                     <option value="1" className="bg-black">USA (+1)</option>
                     <option value="44" className="bg-black">UK (+44)</option>
@@ -105,7 +101,7 @@ export default function RegisterPage() {
                   <Input
                     type="text"
                     placeholder="Date of Birth (DD/MM/YYYY)"
-                    className="w-full h-12 px-4 bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 pr-12 font-card placeholder:font-card"
+                    className="w-full h-12 px-4 bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 pr-12 font-roboto placeholder:font-roboto"
                   />
                   <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none" />
                 </div>
@@ -114,7 +110,7 @@ export default function RegisterPage() {
                 <div className="relative">
                   <select
                     defaultValue=""
-                    className="w-full h-12 px-4 bg-transparent border border-white/50 rounded-md appearance-none text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white font-card text-sm [&:not([value=''])]:text-white"
+                    className="w-full h-12 px-4 bg-transparent border border-white/50 rounded-md appearance-none text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white font-roboto text-sm [&:not([value=''])]:text-white"
                   >
                     <option value="" disabled className="bg-black text-white/50">
                       Gender
@@ -135,7 +131,7 @@ export default function RegisterPage() {
                 <Input
                   type="text"
                   placeholder="College Name"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
+                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-roboto placeholder:font-roboto"
                 />
               </div>
 
@@ -144,7 +140,7 @@ export default function RegisterPage() {
                 <Input
                   type="email"
                   placeholder="Email Address"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
+                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-roboto placeholder:font-roboto"
                 />
               </div>
 
@@ -153,7 +149,7 @@ export default function RegisterPage() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-card placeholder:font-card"
+                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-roboto placeholder:font-roboto"
                 />
                 <Button
                   type="button"
@@ -175,7 +171,7 @@ export default function RegisterPage() {
                 <Input
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Password"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-card placeholder:font-card"
+                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-roboto placeholder:font-roboto"
                 />
                 <Button
                   type="button"
@@ -202,11 +198,11 @@ export default function RegisterPage() {
               </Button>
 
               {/* Login Link */}
-              <p className="text-center text-white/80 text-sm mt-6 font-card">
+              <p className="text-center text-white/80 text-sm mt-6 font-roboto">
                 Already have an account?{" "}
                 <Link
                   href="/login"
-                  className="text-red-500 hover:text-red-400 font-semibold transition-colors"
+                  className="text-red-500 hover:text-red-400 font-semibold transition-colors font-roboto"
                 >
                   Log In
                 </Link>

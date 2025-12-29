@@ -78,6 +78,7 @@
   --font-sans: "Inter", "Geist", "Geist Fallback", system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --font-card: "CardCharacter", sans-serif;
+  --font-joker: "Joker", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -120,6 +121,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -135,14 +137,30 @@
   --brand-charcoal: #1f1f1f;
   --brand-gray: #374151;
   --brand-gray-light: #6b7280;
-  
+
   /* Gradient shortcuts */
   --gradient-primary: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-pink) 50%, var(--brand-red) 100%);
   --gradient-accent: linear-gradient(135deg, var(--brand-yellow) 0%, #fbbf24 100%);
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* IE / Legacy Edge */
+* {
+  -ms-overflow-style: none;
+}
+
 /* Smooth scroll for html - Lenis handles the rest */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -166,11 +184,20 @@ html.lenis, html.lenis body {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Joker";
+  src: url("/fonts/Joker.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -179,4 +206,26 @@ html.lenis, html.lenis body {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes equalizerWeighted {
+  0% {
+    transform: scaleY(calc(var(--base-scale) * 0.6));
+  }
+
+  25% {
+    transform: scaleY(calc(var(--base-scale) * 1.4));
+  }
+
+  50% {
+    transform: scaleY(calc(var(--base-scale) * 0.8));
+  }
+
+  75% {
+    transform: scaleY(calc(var(--base-scale) * 1.25));
+  }
+
+  100% {
+    transform: scaleY(calc(var(--base-scale) * 0.6));
+  }
 }

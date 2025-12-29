@@ -59,24 +59,26 @@ export default function OTPPage() {
       <div className="relative hidden w-1/2 lg:block">
         <Image src="/joker.jpg" alt="Joker Card" fill className="object-cover" priority />
         {/* Dice Logo */}
-        <div className="absolute left-8 top-8">
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M30 5L50 15V35L30 45L10 35V15L30 5Z" fill="white" stroke="white" strokeWidth="2" />
-            <circle cx="30" cy="22" r="3" fill="black" />
-            <circle cx="22" cy="30" r="3" fill="black" />
-            <circle cx="38" cy="30" r="3" fill="black" />
-            <circle cx="30" cy="38" r="3" fill="black" />
-          </svg>
-        </div>
+       <div className="absolute top-8 left-8 z-10">
+                 <div className="relative w-16 h-16">
+                   <Image
+                     src="/Synapse Logo.png"
+                     alt="Synapse Logo"
+                     fill
+                     className="object-contain"
+                     priority
+                   />
+                 </div>
+               </div>
       </div>
 
       {/* Right Side - OTP Form */}
       <div className="flex w-full items-center justify-center bg-[#050505] px-8 lg:w-1/2">
         <div className="w-full max-w-[542px]">
-          <h1 className="font-card mb-12 text-center text-5xl leading-tight tracking-wide text-white">
-            THE CARDS ARE DEALT
+          <h1 className="font-joker mb-12 text-center text-4xl leading-tight tracking-wide text-white">
+            the cards are dealt
             <br />
-            JOIN IN
+            join in
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -87,7 +89,6 @@ export default function OTPPage() {
                 <br />
                 to the email
               </p>
-              <p className="font-roboto mt-1 text-sm text-white/80">XXXXXX781@gmail.com</p>
             </div>
 
             {/* OTP Input Boxes */}
@@ -120,7 +121,7 @@ export default function OTPPage() {
             {/* Continue Button */}
             <button
               type="submit"
-              className="w-full rounded bg-white py-4 font-card text-lg font-semibold text-black transition-colors hover:bg-white/90"
+              className="w-full rounded bg-white py-4 font-roboto text-lg font-semibold text-black transition-colors hover:bg-white/90"
             >
               Continue
             </button>
