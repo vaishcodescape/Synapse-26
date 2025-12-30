@@ -381,8 +381,8 @@ export default function JokerSection() {
                                     key={card.id}
                                     className="card-container absolute"
                                     style={{
-                                        width: 'clamp(140px, 18vw, 220px)',
-                                        height: 'clamp(200px, 26vw, 310px)',
+                                        width: 'clamp(100px, 22vw, 220px)',
+                                        height: 'clamp(140px, 30vw, 310px)',
                                         transform: 'translateY(120vh) scale(0)',
                                     }}
                                     id={card.id}

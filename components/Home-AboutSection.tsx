@@ -76,7 +76,7 @@ export default function AboutSection() {
         const imageX = rect.width * (imageXPercent / 100);
         const yOnLine = m * imageX + b;
         const offsetPx = image.offsetHeight * GRADIENT.offsetRatio;
-        
+
         image.style.left = `${imageXPercent}%`;
         image.style.top = `${yOnLine + offsetPx}px`;
     }, []);
@@ -154,8 +154,8 @@ export default function AboutSection() {
                 About Synapse
             </span>
 
-            <div className="Theme md:max-w-[60%] sm:max-w-[40%]">
-                <div className="Theme_content text-white text-[clamp(1.15rem,1.45vw,2.1rem)] mix-blend-difference leading-relaxed">
+            <div className="Theme max-w-full md:max-w-[60%]">
+                <div className="Theme_content text-white text-[clamp(0.95rem,2.5vw,2.1rem)] mix-blend-difference leading-relaxed">
                     Synapse is more than a college fest — it&apos;s an experience. A convergence of creativity,
                     competition, culture, and chaos, Synapse brings together minds that dare to think,
                     perform, and challenge the ordinary.
@@ -175,8 +175,7 @@ export default function AboutSection() {
                 ref={singleCardRef}
                 src="/Group_9.png"
                 alt="Single Card"
-                className=" absolute pointer-events-none object-contain -translate-x-1/2 sm:max-w-[80%] md:max-w-[60%] min-w-70 max-h-125 rounded-[10px] will-change-[top,left] w-[clamp(300px,30vw,380px)]"
-
+                className="hidden lg:block absolute pointer-events-none object-contain -translate-x-1/2 md:max-w-[60%] min-w-70 max-h-125 rounded-[10px] will-change-[top,left] w-[clamp(300px,30vw,380px)]"
             />
         </section>
     );

@@ -1,27 +1,44 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback, useLayoutEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CountdownTimer } from './CountdownTimer';
+import {
+    Navbar,
+    NavBody,
+    NavItems,
+    MobileNav,
+    MobileNavHeader,
+    MobileNavMenu,
+    MobileNavToggle,
+    NavbarLogo,
+    NavbarButton,
+} from "@/components/ui/Resizable-navbar";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const navItems = [
+    { name: "Home", link: "/" },
+    { name: "Events", link: "/events" },
+    { name: "Merchandise", link: "/merchandise" },
+    { name: "Contact", link: "/contact" },
+];
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 const NUMBERS = "0123456789";
-const FIRST_PHASE_TIME = 4000;
+const FIRST_PHASE_TIME = 3000;
 
 export default function HeroSection() {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
     const [showEnter, setShowEnter] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
     const [isMusicPlaying, setIsMusicPlaying] = useState(false);
     const [part3Active, setPart3Active] = useState(false);
-    const [timeLeft, setTimeLeft] = useState({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-    });
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const progressTextRef = useRef<HTMLDivElement>(null);
@@ -57,30 +74,12 @@ export default function HeroSection() {
         "/RedHand.png",
         "/redcard3.png",
         "/card_center.png",
-        "/Logo_Synapse.png",
 
         // About section
         "/Group_9.png",
 
     ];
 
-    const updateCountdown = useCallback(() => {
-        const targetDate = new Date(2026, 1, 26, 0, 0, 0);
-        const now = new Date();
-        let diff = targetDate.getTime() - now.getTime();
-
-        if (diff <= 0) {
-            setTimeLeft({ days: 0, hours: 0, minutes: 0 });
-            return;
-        }
-
-        const totalMinutes = Math.floor(diff / (1000 * 60));
-        const days = Math.floor(totalMinutes / (60 * 24));
-        const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
-        const minutes = totalMinutes % 60;
-
-        setTimeLeft({ days, hours, minutes });
-    }, []);
 
     const updateProgressText = useCallback((progress: number) => {
         if (progressTextRef.current) {
@@ -329,7 +328,15 @@ export default function HeroSection() {
                 scrub: 2.5,
                 pin: true,
                 pinSpacing: false,
-                anticipatePin: 1.2
+                anticipatePin: 1.2,
+                onUpdate: (self) => {
+                    // Enable pointer-events when we're in the part3 visible range (~35-55% of scroll)
+                    if (self.progress > 0.35 && self.progress < 0.55) {
+                        setPart3Active(true);
+                    } else {
+                        setPart3Active(false);
+                    }
+                }
             }
         });
 
@@ -454,22 +461,14 @@ export default function HeroSection() {
                 }
 
                 unlockScroll();
+
+                // Ensure all scroll triggers refresh after sections become visible
+                setTimeout(() => {
+                    ScrollTrigger.refresh(true);
+                }, 100);
             }
         });
     }, [isLoading, initScrollAnimations, unlockScroll]);
-
-    useEffect(() => {
-        lockScroll();
-        loadAssets();
-
-        updateCountdown();
-        const timer = setInterval(updateCountdown, 60000);
-
-        return () => {
-            clearInterval(timer);
-            ScrollTrigger.getAll().forEach(t => t.kill());
-        };
-    }, [loadAssets, lockScroll, updateCountdown]);
 
     useEffect(() => {
         requestAnimationFrame(() => {
@@ -483,117 +482,104 @@ export default function HeroSection() {
 
             {isLoading ? (
                 <>
-                    <div id="progress" ref={progressTextRef} className=" fixed bottom-[5%] right-[2%] text-white text-[40px] tracking-[2px] z-11 transition-opacity duration-600">
+                    <div id="progress" ref={progressTextRef} className="fixed bottom-[5%] right-[2%] text-white text-[clamp(20px,5vw,40px)] tracking-[2px] z-11 transition-opacity duration-600">
                         Loading {loadingProgress}%
                     </div>
-                    <button id="enterBtn" ref={enterBtnRef} onClick={handleEnter} className={`fixed left-1/2 -translate-x-1/2 bottom-[10%] scale-90 px-[40px] py-[8px] text-[40px] text-white bg-transparent border-[5px] border-white rounded-[10px] cursor-pointer opacity-0 z-40 shadow-[10px_10px_0px_#ff0000] transition-all duration-200 font-['Roboto',sans-serif] pointer-events-auto hover:bg-[#EB0000] hover:text-black hover:border-black hover:shadow-[10px_10px_0px_#ffffff] ${showEnter
+                    <button id="enterBtn" ref={enterBtnRef} onClick={handleEnter} className={`fixed left-1/2 -translate-x-1/2 bottom-[10%] scale-90 px-[clamp(20px,5vw,40px)] py-[8px] text-[clamp(24px,5vw,40px)] text-white bg-transparent border-[3px] md:border-[5px] border-white rounded-[10px] cursor-pointer opacity-0 z-40 shadow-[5px_5px_0px_#ff0000] md:shadow-[10px_10px_0px_#ff0000] transition-all duration-200 font-['Roboto',sans-serif] pointer-events-auto hover:bg-[#EB0000] hover:text-black hover:border-black hover:shadow-[5px_5px_0px_#ffffff] md:hover:shadow-[10px_10px_0px_#ffffff] ${showEnter
                         ? "opacity-100 scale-100 pointer-events-auto"
                         : "opacity-0 scale-90 pointer-events-none"}`}>
                         Enter
                     </button>
                 </>
             ) : (
-                <div className="hero relative inset-0 h-screen z-25" ref={heroRef}>
-                    <div id="maskLayer" className="absolute inset-0 opacity-100 " ref={maskLayerRef} style={{
-                        WebkitMaskImage: 'url("/inkReveal2.gif")',
-                        WebkitMaskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        WebkitMaskSize: '0% 0%',
-                        maskImage: 'url("/inkReveal2.gif")',
-                        maskRepeat: 'no-repeat',
-                        maskPosition: 'center',
-                        maskSize: '0% 0%',
-                    }}>
-                        <img id="coloredImage" src="/RedHand.png" alt="Red Hand" ref={coloredImageRef} className="absolute inset-0 h-full w-full object-cover pointer-events-none" />
-
-                        <div id="flipCard" className="absolute inset-0 transform-3d" ref={flipCardRef}>
-                            <img id="redCard" className="absolute inset-0 w-full h-full object-cover pointer-events-none backface-hidden" src="/redcard3.png" alt="Red Card" ref={cardRef} />
-
-                            <div id="part3_2" ref={part3_2Ref} style={{
-                                backgroundImage:
-                                    "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.45) 65%, rgba(0,0,0,0.75) 85%, #000 100%), url(/image_part3_2.jpg)",
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }} className=" absolute inset-0 flex flex-col items-center justify-center opacity-100 will-change-transform backface-hidden transform-[rotateY(180deg)]">
-                                <div className="screen-container relative w-screen h-screen flex items-center justify-center perspective-[1000px] transform-3d" ref={screenContainerRef}>
-                                    <div className="screen-front absolute inset-0 bg-black bg-[url('/part3-image.png')] bg-no-repeat bg-center bg-contain z-2 backface-hidden"></div>
-                                    <div className="center-joker-container absolute inset-0 flex items-center justify-center transform-[rotateY(180deg)] backface-hidden z-1">
-                                        <img src="/card_center.png" className="center-joker w-full h-auto rotate-[-64deg] object-contain" alt="Joker Card" />
-                                    </div>
-                                </div>
+                <>
+                    {/* Navbar - only shows after loading */}
+                    <Navbar>
+                        <NavBody>
+                            <NavbarLogo />
+                            <NavItems items={navItems} />
+                            <div className="flex items-center gap-4">
+                                <NavbarButton href="/register" variant="gradient">
+                                    Register
+                                </NavbarButton>
                             </div>
+                        </NavBody>
+                        <MobileNav>
+                            <MobileNavHeader>
+                                <NavbarLogo />
+                                <MobileNavToggle
+                                    isOpen={mobileMenuOpen}
+                                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                />
+                            </MobileNavHeader>
+                            <MobileNavMenu
+                                isOpen={mobileMenuOpen}
+                                onClose={() => setMobileMenuOpen(false)}
+                            >
+                                {navItems.map((item, idx) => (
+                                    <a
+                                        key={idx}
+                                        href={item.link}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="w-full text-white/80 hover:text-[#EB0000] transition-colors duration-200 py-2"
+                                    >
+                                        {item.name}
+                                    </a>
+                                ))}
+                                <NavbarButton
+                                    href="/register"
+                                    variant="gradient"
+                                    className="w-full mt-4"
+                                >
+                                    Register
+                                </NavbarButton>
+                            </MobileNavMenu>
+                        </MobileNav>
+                    </Navbar>
 
-                            <div id="part3" ref={part3Ref} className={`absolute inset-0 w-full h-screen transform-[rotateY(180deg)] backface-hidden ${part3Active ? "pointer-events-auto" : "pointer-events-none"}
-  `}>
-                                <nav className="h-[100px] pt-[20px] px-[40px] flex justify-between items-center">
-                                    <img src="/Logo_Synapse.png" className="logo w-[70px]" alt="Logo" />
-                                    <div className="symbols flex gap-[30px] items-center">
-                                        <i className="fa-solid fa-bars fa-2xl"></i>
-                                        <div
-                                            id="musicToggle"
-                                            ref={toggleRef}
-                                            onClick={toggleMusic}
-                                            className=" relative w-[44px] h-[44px] rounded-full border-2 border-white flex items-center justify-center cursor-pointer pointer-events-auto">
-                                            <div className="flex items-center gap-[4px] h-[20px]">
-                                                {[
-                                                    { scale: 0.45, delay: "0s" },
-                                                    { scale: 0.7, delay: "0.12s" },
-                                                    { scale: 1.15, delay: "0.24s" },
-                                                    { scale: 0.7, delay: "0.12s" },
-                                                    { scale: 0.45, delay: "0s" },
-                                                ].map((item, i) => (
-                                                    <span
-                                                        key={i}
-                                                        className={`w-[3px] h-[14px] bg-white rounded-[2px] origin-center ${isMusicPlaying ? "animate-[equalizerWeighted_1.2s_ease-in-out_infinite]" : ""}`}
-                                                        style={{
-                                                            ["--base-scale" as any]: item.scale,
-                                                            animationDelay: item.delay,
-                                                            animationPlayState: isMusicPlaying ? "running" : "paused",
-                                                            transform: isMusicPlaying ? undefined : "scaleY(0.2)",
-                                                        }}
-                                                    />
-                                                ))}
+                    <div className="hero relative inset-0 h-screen z-25" ref={heroRef}>
+                        <div id="maskLayer" className="absolute inset-0 opacity-100 " ref={maskLayerRef} style={{
+                            WebkitMaskImage: 'url("/inkReveal2.gif")',
+                            WebkitMaskRepeat: 'no-repeat',
+                            WebkitMaskPosition: 'center',
+                            WebkitMaskSize: '0% 0%',
+                            maskImage: 'url("/inkReveal2.gif")',
+                            maskRepeat: 'no-repeat',
+                            maskPosition: 'center',
+                            maskSize: '0% 0%',
+                        }}>
+                            <img id="coloredImage" src="/RedHand.png" alt="Red Hand" ref={coloredImageRef} className="absolute inset-0 h-full w-full object-cover pointer-events-none" />
 
-                                            </div>
-                                            <span
-                                                className={`absolute w-[2px] h-[44px] bg-white rotate-45 transition-opacity duration-200 ${isMusicPlaying ? "opacity-0" : "opacity-100"}`}
-                                            />
+                            <div id="flipCard" className="absolute inset-0 transform-3d" ref={flipCardRef}>
+                                <img id="redCard" className="absolute inset-0 w-full h-full object-cover pointer-events-none backface-hidden" src="/redcard3.png" alt="Red Card" ref={cardRef} />
+
+                                <div id="part3_2" ref={part3_2Ref} style={{
+                                    backgroundImage:
+                                        "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.45) 65%, rgba(0,0,0,0.75) 85%, #000 100%), url(/image_part3_2.jpg)",
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                }} className=" absolute inset-0 flex flex-col items-center justify-center opacity-100 will-change-transform backface-hidden transform-[rotateY(180deg)]">
+                                    <div className="screen-container relative w-screen h-screen flex items-center justify-center perspective-[1000px] transform-3d" ref={screenContainerRef}>
+                                        <div className="screen-front absolute inset-0 bg-black bg-[url('/part3-image.png')] bg-no-repeat bg-center bg-contain z-2 backface-hidden"></div>
+                                        <div className="center-joker-container absolute inset-0 flex items-center justify-center transform-[rotateY(180deg)] backface-hidden z-1">
+                                            <img src="/card_center.png" className="center-joker w-full h-auto rotate-[-64deg] object-contain" alt="Joker Card" />
                                         </div>
                                     </div>
-                                </nav>
-
-                                <div className="title-wrapper flex justify-center pt-[40px] h-[calc(100vh-280px)]">
-                                    <h1 className="title text-[140px] font-joker leading-none" ref={titleRef}>Synapse&apos;26</h1>
                                 </div>
 
-                                <div className="countdown absolute bottom-[40px] left-[40px] flex gap-[50px]">
-                                    <div className="time-block relative flex flex-col items-center">
-                                        <h2 className="text-[60px] font-normal leading-[1.1]" ref={daysRef}>{timeLeft.days}</h2>
-                                        <h3 className="text-[26px] font-normal opacity-90">Days</h3>
-                                        <span className="absolute translate-x-[180%] text-[60px] font-normal font-mono leading-none">
-                                            :
-                                        </span>
-                                    </div>
-                                    <div className="time-block relative flex flex-col items-center">
-                                        <h2 className="text-[60px] font-normal leading-[1.1]" ref={hoursRef}>{timeLeft.hours}</h2>
-                                        <h3 className="text-[26px] font-normal opacity-90">Hours</h3>
-                                        <span className="absolute translate-x-[180%] text-[60px] font-normal font-mono leading-none">
-                                            :
-                                        </span>
-                                    </div>
-                                    <div className="time-block relative flex flex-col items-center">
-                                        <h2 className="text-[60px] font-normal leading-[1.1]" ref={minutesRef}>{timeLeft.minutes}</h2>
-                                        <h3 className="text-[26px] font-normal opacity-90">Minutes</h3>
-                                    </div>
-                                </div>
+                                <div id="part3" ref={part3Ref} className={`absolute inset-0 w-full h-screen transform-[rotateY(180deg)] backface-hidden ${part3Active ? "pointer-events-auto" : "pointer-events-none"}`}>
 
-                                <div className="register-btn absolute bottom-[40px] right-[40px]">
-                                    <button className="but px-[28px] py-[10px] text-[36px] border-[5px] border-white rounded-[10px] bg-transparent text-white shadow-[10px_10px_0px_#EB0000] transition-all duration-300 font-['Roboto',sans-serif] hover:bg-[#EB0000] hover:text-black hover:border-black hover:scale-105 hover:shadow-[10px_10px_0px_rgba(255,255,255,0.7)]">Register</button>
+                                    <div className="title-wrapper flex justify-center pt-[60px] md:pt-[120px] h-[calc(100vh-120px)] md:h-[calc(100vh-200px)]">
+                                        <h1 className="title text-[clamp(48px,15vw,140px)] font-joker leading-none text-center px-4" ref={titleRef}>Synapse&apos;26</h1>
+                                    </div>
+
+                                    <CountdownTimer targetDate={new Date("2026-02-26 00:00:00")} />
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </>
             )}
 
             <audio

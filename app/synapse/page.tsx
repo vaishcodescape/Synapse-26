@@ -1,12 +1,12 @@
 "use client";
 
-import HeroSection from "@/components/HomeMainSection";
-import AboutSection from "@/components/HomeAboutSection";
-import JokerSection from "@/components/HomeJokerSection";
-import Artists from "@/components/HomeArtists";
-import HallOfFame from "@/components/HomeHallOfFame";
-import Footer from "@/components/HomeFooter";
-import { SmoothScroller } from "@/components/SmoothScroller";
+import HeroSection from "@/components/Hero-Section";
+import AboutSection from "@/components/Home-AboutSection";
+import JokerSection from "@/components/Home-JokerSection";
+import ArtistsSection from "@/components/Artists";
+import HallOfFame from "@/components/Home-HallOfFame";
+import Footer from "@/components/ui/Footer";
+import { SmoothScroller } from "@/components/ui/SmoothScroller";
 
 export default function HomeSection() {
   return (
@@ -16,7 +16,7 @@ export default function HomeSection() {
         <div className="end hidden overflow-x-hidden w-full flex-col relative top-[500vh]">
           <AboutSection />
           <JokerSection />
-          <Artists />
+          <ArtistsSection />
           <HallOfFame />
           <Footer />
         </div>
