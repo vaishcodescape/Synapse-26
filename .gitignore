@@ -140,3 +140,5 @@ vite.config.ts.timestamp-*
 
 admin-schema.sql
 updated_schema.sql
+.vercel
+.env*.local

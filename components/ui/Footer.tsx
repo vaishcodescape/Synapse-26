@@ -1,274 +1,132 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+const ContactFooter: React.FC = () => {
+    return (
+        <footer className="relative w-full min-h-screen bg-black text-white font-sans overflow-hidden">
+            <style jsx>{`
+        @media (max-width: 968px) {
+          html, body {
+            overflow: auto !important;
+          }
+        }
+      `}</style>
 
-export default function Footer() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const contactSectionRef = useRef<HTMLDivElement>(null);
+            <video
+                className="absolute inset-0 w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                id="bgVideo"
+            >
+                <source src="/FooterFirework.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title animation
-      if (titleRef.current) {
-        ScrollTrigger.create({
-          trigger: titleRef.current,
-          start: "top 85%",
-          once: true,
-          onEnter: () => {
-            gsap.fromTo(
-              titleRef.current,
-              { opacity: 0, y: 30, scale: 0.95 },
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1,
-                ease: "expo.out",
-              }
-            );
-          },
-        });
-      }
+            <div className="absolute inset-0 bg-black/20 z-10" aria-hidden="true" />
 
-      // Contact section animation
-      if (contactSectionRef.current) {
-        ScrollTrigger.create({
-          trigger: contactSectionRef.current,
-          start: "top 80%",
-          once: true,
-          onEnter: () => {
-            const items = contactSectionRef.current?.querySelectorAll(".contact-item");
-            if (items && items.length > 0) {
-              gsap.fromTo(
-                items,
-                { opacity: 0, y: 30 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.6,
-                  ease: "power2.out",
-                  stagger: 0.1,
-                }
-              );
-            }
-          },
-        });
-      }
-    }, sectionRef);
+            <div className="relative z-20 w-full min-h-screen flex flex-col">
+                <div className="w-full">
+                    <Image
+                        src="/subtract.svg"
+                        alt="Synapse Logo"
+                        width={1920}
+                        height={400}
+                        className="w-full h-auto object-contain"
+                        priority
+                    />
+                </div>
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+                <div className="px-4 md:px-[10%] pt-6 pb-4 md:pt-5 md:pb-2.5 flex flex-col flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-2.5">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-0">Contact us</h1>
+                        <Image
+                            src="/Logo_Synapse.png"
+                            alt="Synapse Header Logo"
+                            width={50}
+                            height={50}
+                            className="w-10 h-10 sm:w-12 sm:h-12"
+                        />
+                    </div>
 
-  return (
-    <footer
-      id="contact"
-      ref={sectionRef}
-      className="relative w-full bg-black overflow-hidden"
-    >
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/30 to-black">
-          {/* Subtle animated particles */}
-          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-pink-500/60 rounded-full animate-pulse" />
-          <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-500/60 rounded-full animate-pulse" style={{ animationDelay: '400ms' }} />
-          <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-red-500/50 rounded-full animate-pulse" style={{ animationDelay: '800ms' }} />
-          <div className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-pink-400/60 rounded-full animate-pulse" style={{ animationDelay: '600ms' }} />
-          <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-purple-400/60 rounded-full animate-pulse" style={{ animationDelay: '1200ms' }} />
-        </div>
-      </div>
+                    <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-2.5">Reach Us Out At</p>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
-        {/* SYNAPSE Title */}
-        <div className="text-center mb-20 md:mb-24">
-          <h1
-            ref={titleRef}
-            className="text-7xl md:text-9xl lg:text-[10rem] font-black text-white leading-none opacity-0 mb-4"
-            style={{
-              fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-              letterSpacing: "0.05em",
-              background: "linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #ef4444 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            SYNAPSE
-          </h1>
-          <p className="text-white/60 text-lg md:text-xl tracking-wider">
-            DA KA TYOHAAR
-          </p>
-        </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-start mb-8 md:mb-7 text-sm sm:text-base md:text-lg">
+                        <div className="space-y-2 sm:space-y-3 leading-relaxed sm:leading-loose">
+                            <div>
+                                <span className="font-semibold">Vivek Chaudhari:</span>
+                                <Link href="tel:+916354042414" className="ml-1 hover:text-indigo-300 transition-colors duration-200">
+                                    +91 6354 042 414
+                                </Link>
+                            </div>
+                            <div>
+                                <span className="font-semibold">Harshall Dharmik:</span>
+                                <Link href="tel:+917600051765" className="ml-1 hover:text-indigo-300 transition-colors duration-200">
+                                    +91 7600 051 765
+                                </Link>
+                            </div>
+                            <div>
+                                <span className="font-semibold">Kushal Desai:</span>
+                                <Link href="tel:+919727055132" className="ml-1 hover:text-indigo-300 transition-colors duration-200">
+                                    +91 9727 055 132
+                                </Link>
+                            </div>
+                        </div>
 
-        {/* Contact Section */}
-        <div
-          ref={contactSectionRef}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16 mb-20"
-        >
-          {/* Left Column - Contact Persons */}
-          <div className="space-y-8 contact-item opacity-0">
-            <div>
-              <h2
-                className="text-4xl md:text-5xl font-black text-white leading-none mb-3"
-                style={{
-                  fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                CONTACT
-              </h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
+                        <div className="text-left lg:text-right lg:pl-6 xl:pl-10 space-y-2 sm:space-y-3 leading-relaxed sm:leading-loose">
+                            <div>DAIICT-campus, near, Reliance Cross Rd,</div>
+                            <div>Gandhinagar, Gujarat 382007</div>
+                            <div className="mt-4 md:mt-2.5 space-y-1">
+                                <Link
+                                    href="mailto:synapse.thefest@gmail.com"
+                                    className="block hover:text-indigo-300 transition-colors duration-200"
+                                >
+                                    synapse.thefest@gmail.com
+                                </Link>
+                                <Link
+                                    href="mailto:synapse@daiict.ac.in"
+                                    className="block hover:text-indigo-300 transition-colors duration-200"
+                                >
+                                    synapse@daiict.ac.in
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-auto pb-6 sm:pb-4 md:pb-2.5">
+                        <Link
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white no-underline text-sm sm:text-base md:text-lg font-bold tracking-widest hover:text-[#667eea] hover:-translate-y-0.5 transition-all duration-300 ease-in-out px-2 py-1"
+                        >
+                            FACEBOOK
+                        </Link>
+                        <Link
+                            href="https://instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white no-underline text-sm sm:text-base md:text-lg font-bold tracking-widest hover:text-[#667eea] hover:-translate-y-0.5 transition-all duration-300 ease-in-out px-2 py-1"
+                        >
+                            INSTAGRAM
+                        </Link>
+                        <Link
+                            href="https://youtube.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white no-underline text-sm sm:text-base md:text-lg font-bold tracking-widest hover:text-[#667eea] hover:-translate-y-0.5 transition-all duration-300 ease-in-out px-2 py-1"
+                        >
+                            YOUTUBE
+                        </Link>
+                    </nav>
+                </div>
             </div>
-            <div className="space-y-6">
-              <div>
-                <p className="font-bold text-white text-lg md:text-xl mb-2">Vivek Chaudhari</p>
-                <Link
-                  href="tel:+916354042414"
-                  className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg block"
-                >
-                  +91 6354 042 414
-                </Link>
-              </div>
-              <div>
-                <p className="font-bold text-white text-lg md:text-xl mb-2">Harshali Dharmik</p>
-                <Link
-                  href="tel:+917600051765"
-                  className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg block"
-                >
-                  +91 7600 051 765
-                </Link>
-              </div>
-              <div>
-                <p className="font-bold text-white text-lg md:text-xl mb-2">Kushal Desai</p>
-                <Link
-                  href="tel:+919727055132"
-                  className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg block"
-                >
-                  +91 9727 055 132
-                </Link>
-              </div>
-            </div>
-          </div>
+        </footer>
+    );
+};
 
-          {/* Middle Column - Address */}
-          <div className="space-y-8 contact-item opacity-0">
-            <div>
-              <h2
-                className="text-4xl md:text-5xl font-black text-white leading-none mb-3"
-                style={{
-                  fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                LOCATION
-              </h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
-            </div>
-            <div className="text-white/80 text-base md:text-lg leading-relaxed">
-              <p>
-                DAIICT-campus, near Reliance Cross Rd,
-                <br />
-                Gandhinagar, Gujarat 382007
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column - Email & Logo */}
-          <div className="space-y-8 contact-item opacity-0">
-            <div>
-              <h2
-                className="text-4xl md:text-5xl font-black text-white leading-none mb-3"
-                style={{
-                  fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                EMAIL
-              </h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
-            </div>
-            <div className="space-y-4">
-              <Link
-                href="mailto:synapse.thefest@gmail.com"
-                className="block text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg"
-              >
-                synapse.thefest@gmail.com
-              </Link>
-              <Link
-                href="mailto:synapse@daiict.ac.in"
-                className="block text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg"
-              >
-                synapse@daiict.ac.in
-              </Link>
-            </div>
-            {/* Synapse Logo */}
-            <div className="pt-4">
-              <div className="relative w-16 h-16">
-                <Image
-                  src="/Synapse Logo.png"
-                  alt="Synapse Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Media Links */}
-        <div className="border-t border-white/10 pt-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Social Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-              <Link
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on Facebook"
-                className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg font-semibold uppercase tracking-wider contact-item opacity-0"
-              >
-                Facebook
-              </Link>
-              <Link
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on Instagram"
-                className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg font-semibold uppercase tracking-wider contact-item opacity-0"
-              >
-                Instagram
-              </Link>
-              <Link
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe to our YouTube channel"
-                className="text-white/70 hover:text-pink-400 transition-colors text-base md:text-lg font-semibold uppercase tracking-wider contact-item opacity-0"
-              >
-                YouTube
-              </Link>
-            </div>
-
-            {/* Copyright */}
-            <div className="text-white/50 text-sm md:text-base text-center md:text-right contact-item opacity-0">
-              <p>© 2026 SYNAPSE. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+export default ContactFooter;

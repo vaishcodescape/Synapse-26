@@ -10,7 +10,8 @@ module.exports = {
         // Add other custom colors as needed
       },
       fontFamily: {
-        card: ['CardCharacter', 'sans-serif'],
+        card: ["var(--font-card)"],
+        joker: ["var(--font-joker)"],
       },
     },
   },
