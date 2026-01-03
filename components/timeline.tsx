@@ -3,8 +3,24 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Roboto } from "next/font/google"
+import localFont from "next/font/local"
 
 gsap.registerPlugin(ScrollTrigger)
+
+/* fonts */
+
+// Joker (local font for titles)
+const joker = localFont({
+  src: "../app/fonts/Joker.ttf",
+  display: "swap",
+})
+ 
+// Roboto (Google font for table)
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+})
 
 /* types */
 
@@ -54,48 +70,29 @@ export default function TimelineContent() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    // 1️⃣ Kill any existing triggers (important on route change)
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+    sectionsRef.current.forEach((section) => {
+      if (!section) return
 
-    // 2️⃣ Let the browser finish layout + images
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 120,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      })
+    })
 
-        sectionsRef.current.forEach((section) => {
-          if (!section) return;
-
-          gsap.fromTo(
-            section,
-            { opacity: 0, y: 120 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 90%",
-                scrub: 1,
-              },
-            }
-          );
-        });
-
-        // 3️⃣ Force GSAP to recalc everything
-        ScrollTrigger.refresh();
-      });
-    });
-
-    // 4️⃣ Cleanup on unmount
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill())
+  }, [])
 
   return (
     <div
       className="relative min-h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images_timeline/bg.jpg')" }}
+      style={{ backgroundImage: "url('/images/bg.jpg')" }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
@@ -105,7 +102,7 @@ export default function TimelineContent() {
         {/* header */}
         <div className="max-w-7xl mx-auto px-4 pt-24 pb-32 text-center">
           <h1
-            className={`text-4xl md:text-9xl mb-4 tracking-wide text-white font-joker`}>
+            className={`text-4xl md:text-9xl mb-4 tracking-wide text-white ${joker.className}`}>
             timeline
           </h1>
         </div>
@@ -124,14 +121,14 @@ export default function TimelineContent() {
               <h2
                 className={`text-[72px] md:text-[100px] lg:text-[120px] 
                             font-normal text-center leading-none tracking-wide 
-                            text-red-600 font-joker`}
+                            text-red-600 ${joker.className}`}
               >
                 day {daySchedule.day}
               </h2>
 
               {/* Table (Roboto) */}
               <table
-                className={`w-full table-fixed bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden font-roboto`}
+                className={`w-full table-fixed bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden ${roboto.className}`}
               >
                 <thead>
                   <tr>

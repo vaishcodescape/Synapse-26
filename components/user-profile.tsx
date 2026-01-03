@@ -1,11 +1,19 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { Roboto } from "next/font/google"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowLeft } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
+
+/* font */
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+})
+const pClass = roboto.className
 
 /**
  * NOTE FOR BACKEND / INTEGRATION:
@@ -88,8 +96,8 @@ export default function UserProfile() {
                 ["Last Name", userDetails.lastName],
               ].map(([label, value]) => (
                 <div key={label} className="animate border border-white p-4 min-h-[72px]">
-                  <p className={`text-xs text-muted-foreground font-roboto`}>{label}</p>
-                  <p className={`text-base font-semibold font-roboto`}>{value}</p>
+                  <p className={`text-xs text-muted-foreground ${pClass}`}>{label}</p>
+                  <p className={`text-base font-semibold ${pClass}`}>{value}</p>
                 </div>
               ))}
             </div>
@@ -100,8 +108,8 @@ export default function UserProfile() {
               ["Email Address", userDetails.email],
             ].map(([label, value]) => (
               <div key={label} className="animate border border-white p-4 min-h-[72px]">
-                <p className={`text-xs text-muted-foreground font-roboto`}>{label}</p>
-                <p className={`text-base font-semibold break-all font-roboto`}>{value}</p>
+                <p className={`text-xs text-muted-foreground ${pClass}`}>{label}</p>
+                <p className={`text-base font-semibold break-all ${pClass}`}>{value}</p>
               </div>
             ))}
 
@@ -111,8 +119,8 @@ export default function UserProfile() {
                 ["Gender", userDetails.gender],
               ].map(([label, value]) => (
                 <div key={label} className="animate border border-white p-4 min-h-[72px]">
-                  <p className={`text-xs text-muted-foreground font-roboto`}>{label}</p>
-                  <p className={`text-base font-semibold font-roboto`}>{value}</p>
+                  <p className={`text-xs text-muted-foreground ${pClass}`}>{label}</p>
+                  <p className={`text-base font-semibold ${pClass}`}>{value}</p>
                 </div>
               ))}
             </div>
@@ -139,7 +147,7 @@ export default function UserProfile() {
                     {event.status}
                   </span>
                 </div>
-                <p className={`mt-1 text-sm font-roboto`}>{event.category}</p>
+                <p className={`mt-1 text-sm ${pClass}`}>{event.category}</p>
               </div>
             ))}
           </div>
@@ -149,7 +157,7 @@ export default function UserProfile() {
 
           <div className="border border-white p-4 min-h-[72px]">
             <div className="flex justify-between items-center">
-              <p className={`text-base font-semibold font-roboto`}>2 days accommodation</p>
+              <p className={`text-base font-semibold ${pClass}`}>2 days accommodation</p>
               <span
                 className={`px-3 py-1 rounded-full text-sm ${
                   hasAccommodation

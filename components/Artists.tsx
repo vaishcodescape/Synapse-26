@@ -259,10 +259,10 @@ export default function ArtistsSection() {
                                 />
                                 {i === currentIndex && (
                                     <div className="mt-4 border-t-2 border-b-2 border-black py-2 px-6 bg-white text-center text-black">
-                                        <h2 className="text-2xl md:text-5xl font-jakass uppercase">
+                                        <h2 className="text-2xl md:text-5xl font-bold uppercase">
                                             {artist.name}
                                         </h2>
-                                        <p className="text-sm font-jakass md:text-lg">
+                                        <p className="text-sm md:text-lg">
                                             {artist.date}
                                         </p>
                                     </div>
@@ -272,42 +272,32 @@ export default function ArtistsSection() {
                     </div>
 
                     <button
-                        className="
-    group
-    absolute top-[45%] -translate-y-1/2
-    flex items-center justify-center
-    bg-red-600 hover:bg-black
-    transition-colors duration-400
-    z-20 cursor-pointer
-  "
+                        className="absolute top-[45%] -translate-y-1/2
+             w-15.5 h-13.5 bg-red-600
+             flex items-center justify-center
+             hover:bg-black transition z-20 cursor-pointer"
                         onClick={prevArtist}
                         style={{
-                            width: "clamp(36px, 6vw, 62px)",
-                            height: "clamp(32px, 5vw, 54px)",
-                            right: "calc(50% + clamp(260px, 42vw, 520px)/2)",
+                            width: 'clamp(36px, 6vw, 62px)',
+                            height: 'clamp(32px, 5vw, 54px)',
+                            right: 'calc(50% + clamp(260px, 42vw, 520px)/2)'
                         }}
                     >
                         <div
-                            className="
-      bg-black
-      group-hover:bg-red-600
-      transition-colors duration-400
-      rotate-270
-    "
+                            className="w-8.25 h-5.5 bg-black hover:bg-red-600 rotate-270"
                             style={{
-                                width: "clamp(18px, 2.5vw, 33px)",
-                                height: "clamp(12px, 1.8vw, 22px)",
-                                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                                width: 'clamp(18px, 2.5vw, 33px)',
+                                height: 'clamp(12px, 1.8vw, 22px)',
+                                clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
                             }}
                         />
                     </button>
 
-
                     <button
-                        className="group absolute top-[45%] -translate-y-1/2
+                        className="absolute top-[45%] -translate-y-1/2
               bg-red-600 hover:bg-black
-      transition-colors duration-400
-             flex items-center justify-center transition z-20 cursor-pointer"
+             flex items-center justify-center
+             hover:opacity-85 transition z-20 cursor-pointer"
                         onClick={nextArtist}
                         style={{
                             width: 'clamp(36px, 6vw, 62px)',
@@ -316,9 +306,7 @@ export default function ArtistsSection() {
                         }}
                     >
                         <div
-                            className="w-8.25 h-5.5 bg-black 
-      group-hover:bg-red-600 -rotate-270
-      transition-colors duration-400"
+                            className="w-8.25 h-5.5 bg-black hover:bg-red-600 -rotate-270"
                             style={{
                                 width: 'clamp(18px, 2.5vw, 33px)',
                                 height: 'clamp(12px, 1.8vw, 22px)',

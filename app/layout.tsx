@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bebas_Neue, Inter, Roboto, Poppins } from "next/font/google";
-import { SmoothScroller } from "@/components/ui/SmoothScroller";
+import {
+  Geist,
+  Geist_Mono,
+  Bebas_Neue,
+  Inter,
+  Roboto,
+  Poppins,
+} from "next/font/google";
+
 import "./globals.css";
-import FluidCanvas from "@/components/FluidCanvas";
+import FluidCanvas from "@/components/FluidCanvas"; // 🔥 Global Fluid
+
+/* ================= FONTS ================= */
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,9 +48,12 @@ const poppins = Poppins({
   display: "swap",
 });
 
+/* ================= METADATA ================= */
+
 export const metadata: Metadata = {
   title: "SYNAPSE'26 | DA Ka Tyohaar",
-  description: "SYNAPSE'26 - The Ultimate Tech-Cultural Festival. Register now for the most anticipated event of the year.",
+  description:
+    "SYNAPSE'26 - The Ultimate Tech-Cultural Festival. Register now for the most anticipated event of the year.",
   keywords: ["synapse", "tech fest", "college fest", "2026", "technology", "events"],
   openGraph: {
     title: "SYNAPSE'26",
@@ -49,6 +61,8 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+/* ================= ROOT LAYOUT ================= */
 
 export default function RootLayout({
   children,
@@ -58,12 +72,23 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${inter.variable} ${roboto.variable} ${poppins.variable} antialiased bg-black`}
+        className={`
+          ${geistSans.variable}
+          ${geistMono.variable}
+          ${bebasNeue.variable}
+          ${inter.variable}
+          ${roboto.variable}
+          ${poppins.variable}
+          antialiased
+          bg-black
+          relative
+        `}
       >
-        <SmoothScroller >
-          {/* <FluidCanvas /> */}
-          {children}
-        </SmoothScroller>
+        {/* 🔥 GLOBAL FLUID BACKGROUND — ALL PAGES */}
+        <FluidCanvas />
+
+        {/* 👇 APP CONTENT */}
+        {children}
       </body>
     </html>
   );
