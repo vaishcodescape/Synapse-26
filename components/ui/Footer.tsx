@@ -106,6 +106,14 @@ const ContactFooter: React.FC = () => {
                         >
                             YOUTUBE
                         </Link>
+                        <Link
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white no-underline text-sm sm:text-base md:text-lg font-bold tracking-widest hover:text-[#667eea] hover:-translate-y-0.5 transition-all duration-300 ease-in-out px-2 py-1"
+                        >
+                            FACEBOOK
+                        </Link>
                     </nav>
                 </div>
             </div>
