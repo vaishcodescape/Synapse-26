@@ -58,7 +58,7 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
       {timeUnits.map((unit, index) => (
         <div
           key={unit.label}
-          className="relative flex flex-col items-center"
+          className="relative flex flex-col gap-3 items-center"
         >
           <div
             className="
@@ -84,7 +84,7 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
               className="
             absolute
             left-full
-            translate-x-[35%]
+            translate-x-[200%]
             font-joker
             leading-none
             text-[clamp(1.4rem,4.5vw,2.4rem)]

@@ -16,7 +16,7 @@ const ContactFooter: React.FC = () => {
       `}</style>
 
             <video
-                className="absolute inset-0 w-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 autoPlay
                 muted
                 loop
@@ -36,16 +36,16 @@ const ContactFooter: React.FC = () => {
                         alt="Synapse Logo"
                         width={1920}
                         height={400}
-                        className="w-full h-auto object-contain"
+                        className="w-full top-0 h-auto object-contain"
                         priority
                     />
                 </div>
 
                 <div className="px-4 md:px-[20px] pt-6 pb-4 md:pt-5 md:pb-2.5 flex flex-col flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-2.5">
+                    <div className="flex sm:flex-row items-center justify-between mb-4 md:mb-10 md:mt-14">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-0">Contact us</h1>
                         <Image
-                            src="/Logo_Synapse.png"
+                            src="/Synapse Logo.png"
                             alt="Synapse Header Logo"
                             width={50}
                             height={50}
@@ -53,9 +53,9 @@ const ContactFooter: React.FC = () => {
                         />
                     </div>
 
-                    <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-2.5">Reach Us Out At</p>
+                    <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-4">Reach Us Out At</p>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-start mb-8 md:mb-7 text-sm sm:text-base md:text-lg">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-8 md:mb-7 text-sm sm:text-base md:text-lg">
                         <div className="space-y-2 sm:space-y-3 leading-relaxed sm:leading-loose">
                             <div>
                                 <span className="font-semibold">Namra Sanandiya:</span>
@@ -89,7 +89,7 @@ const ContactFooter: React.FC = () => {
                         </div>
                     </div>
 
-                    <nav className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-auto pb-6 sm:pb-4 md:pb-2.5">
+                    <nav className="flex flex-wrap justify-center bottom-0 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-auto pb-6 sm:pb-4 md:pb-2.5">
                         <Link
                             href="https://www.instagram.com/synapsedaiict?igsh=MXUwYzc5ZGE4N2NhZA=="
                             target="_blank"

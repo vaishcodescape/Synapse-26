@@ -15,12 +15,12 @@ interface Artist {
 export default function ArtistsSection() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [artists] = useState<Artist[]>([
-        { name: "Sartek", date: "21 Feb 2025", image: "/DJSartek.avif" },
-        { name: "Mohit Chauhan", date: "23 Feb 2025", image: "/MohitChauhan.jpg" },
-        { name: "Nikhil D' Souza", date: "21 Feb 2025", image: "/NikhilDSouza.jpg" },
-        { name: "Shaan", date: "22 Feb 2025", image: "/Shaan.jpg" },
-        { name: "Teri Miko", date: "22 Feb 2025", image: "/TeriMiko.jpg" },
-        { name: "Ravi Gupta", date: "20 Feb 2025", image: "/RaviGupta.jpg" }
+        { name: "Sartek", date: "21 Feb 2025", image: "/images_home/DJSartek.avif" },
+        { name: "Mohit Chauhan", date: "23 Feb 2025", image: "/images_home/MohitChauhan.jpg" },
+        { name: "Nikhil D' Souza", date: "21 Feb 2025", image: "/images_home/NikhilDSouza.jpg" },
+        { name: "Shaan", date: "22 Feb 2025", image: "/images_home/Shaan.jpg" },
+        { name: "Teri Miko", date: "22 Feb 2025", image: "/images_home/TeriMiko.jpg" },
+        { name: "Ravi Gupta", date: "20 Feb 2025", image: "/images_home/RaviGupta.jpg" }
     ]);
 
     const artistSectionRef = useRef<HTMLDivElement>(null);
@@ -259,10 +259,10 @@ export default function ArtistsSection() {
                                 />
                                 {i === currentIndex && (
                                     <div className="mt-4 border-t-2 border-b-2 border-black py-2 px-6 bg-white text-center text-black">
-                                        <h2 className="text-2xl md:text-5xl font-jakass uppercase">
+                                        <h2 className="text-2xl md:text-5xl font-jqka uppercase">
                                             {artist.name}
                                         </h2>
-                                        <p className="text-sm font-jakass md:text-lg">
+                                        <p className="text-sm font-jqka md:text-lg">
                                             {artist.date}
                                         </p>
                                     </div>

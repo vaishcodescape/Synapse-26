@@ -205,7 +205,7 @@ export default function AboutSection() {
 
             <img
                 ref={singleCardRef}
-                src="/Group_9.png"
+                src="/images_home/Group_9.png"
                 alt="Single Card"
                 className="hidden md:block absolute pointer-events-none object-contain -translate-x-1/2 md:max-w-[60%] min-w-70 max-h-125 rounded-[10px] will-change-[top,left] w-[clamp(300px,30vw,380px)]"
             />

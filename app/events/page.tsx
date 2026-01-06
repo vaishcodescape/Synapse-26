@@ -113,7 +113,7 @@ export default function EventsPage() {
                                                     style={{ backfaceVisibility: "hidden" }}
                                                 >
                                                     <Image
-                                                        src="/card.png"
+                                                        src="/images_events/card.png"
                                                         alt=""
                                                         fill
                                                         sizes="(max-width: 768px) 100vw, 700px"

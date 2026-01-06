@@ -79,7 +79,6 @@
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --font-card: "CardCharacter", sans-serif;
   --font-joker: "Joker", sans-serif;
-  --font-jakass: "JakassWild", sans-serif;
   --font-jqka: "jqka", sans-serif;
   --font-poppins: "Poppins", system-ui, sans-serif;
   --font-roboto: "Roboto", sans-serif;
@@ -188,14 +187,6 @@ html.lenis body {
 @font-face {
   font-family: "Joker";
   src: url("/fonts/Joker.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JakassWild";
-  src: url("/fonts/JakassWild.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

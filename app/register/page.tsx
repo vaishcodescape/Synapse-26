@@ -1,29 +1,20 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/Button";
-import { Eye, EyeOff, Calendar, ChevronDown } from "lucide-react";
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function RegisterPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   return (
-    <div className="min-h-screen flex bg-black">
+    <div className="min-h-screen flex">
       {/* Left Side - Image */}
-      <div className="hidden lg:flex lg:w-1/2 relative">
-        <Image
-          src="/joker.jpg"
-          alt="Joker Cards Background"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Synapse Logo Overlay */}
+      <div className="fixed hidden md:flex h-full md:w-1/2 bg-[#1a1a1a]">
+        {/* Dice Logo */}
+        {/* <CHANGE> added horizontal gradient overlay to soften the boundary between image and form */}
+
         <div className="absolute top-8 left-8 z-10">
           <div className="relative w-16 h-16">
             <Image
@@ -35,184 +26,205 @@ export default function RegisterPage() {
             />
           </div>
         </div>
+
+        {/* Joker Card Background Image */}
+        <Image src="/joker.jpg" alt="Joker Card" fill className="object-cover" priority />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-r from-transparent to-black pointer-events-none" />
       </div>
 
       {/* Right Side - Registration Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-8 lg:p-12">
-        <div className="w-full max-w-[582px] space-y-8">
+      <div className="w-full ml-[50%] lg:w-1/2 bg-black flex items-center justify-center p-8">
+        <div className="w-full max-w-md space-y-8">
           {/* Header */}
-          <div className="text-center space-y-3">
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider"
-              style={{
-                fontFamily: "var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              THE CARDS ARE DEALT
-              <br />
-              JOIN IN
-            </h1>
+          <div className="text-center space-y-2 font-joker">
+            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-wider">the cards are dealt</h1>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-wider">join in</h2>
           </div>
 
-          {/* Registration Form Card */}
-          <Card className="bg-black/40 border-white/20 backdrop-blur-sm">
-            <CardHeader className="pb-6">
-              <CardTitle className="text-2xl text-white text-center">
-                Create Your Account
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              {/* Name Fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Input
-                    type="text"
-                    placeholder="First Name"
-                    className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Input
-                    type="text"
-                    placeholder="Last Name"
-                    className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
-                  />
-                </div>
-              </div>
+          {/* Registration Form */}
+          <div className="space-y-4 border border-white/20 p-8 rounded-lg">
+            {/* Name Fields */}
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="E.g. Aditya"
+                className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+              <input
+                type="text"
+                placeholder="E.g. Sharma"
+                className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+            </div>
 
-              {/* Phone Number */}
-              <div className="flex gap-3">
-                <div className="relative w-32">
-                  <select className="w-full h-12 px-3 bg-transparent border border-white/50 rounded-md text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white appearance-none font-card">
-                    <option value="91" className="bg-black">INR (+91)</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50 pointer-events-none" />
-                </div>
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="flex-1 bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
-                />
-              </div>
+            {/* Phone Number */}
+            <div className="flex gap-2">
+              <select className="w-32 px-3 py-3 bg-transparent border border-white/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white/50">
+                <option value="91" className="bg-black">
+                  INR(+91)
+                </option>
+                <option value="1" className="bg-black">
+                  USA(+1)
+                </option>
+                <option value="44" className="bg-black">
+                  UK(+44)
+                </option>
+              </select>
+              <input
+                type="tel"
+                placeholder="12345 67890"
+                className="flex-1 px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+            </div>
 
-              {/* Date of Birth and Gender */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* DOB */}
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Date of Birth (DD/MM/YYYY)"
-                    className="w-full h-12 px-4 bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 pr-12 font-card placeholder:font-card"
-                  />
-                  <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none" />
-                </div>
-
-                {/* Gender */}
-                <div className="relative">
-                  <select
-                    defaultValue=""
-                    className="w-full h-12 px-4 bg-transparent border border-white/50 rounded-md appearance-none text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white font-card text-sm [&:not([value=''])]:text-white"
-                  >
-                    <option value="" disabled className="bg-black text-white/50">
-                      Gender
-                    </option>
-                    <option value="male" className="bg-black text-white">Male</option>
-                    <option value="female" className="bg-black text-white">Female</option>
-                    <option value="other" className="bg-black text-white">Other</option>
-                    <option value="prefer-not-to-say" className="bg-black text-white">
-                      Prefer not to say
-                    </option>
-                  </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* College Name */}
-              <div className="space-y-2">
-                <Input
+            {/* Date of Birth and Gender */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative">
+                <input
                   type="text"
-                  placeholder="College Name"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
+                  placeholder="DOB: DD/MM/YYYY"
+                  className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 pr-10"
                 />
-              </div>
-
-              {/* Email */}
-              <div className="space-y-2">
-                <Input
-                  type="email"
-                  placeholder="Email Address"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 font-card placeholder:font-card"
-                />
-              </div>
-
-              {/* Password */}
-              <div className="relative space-y-2">
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-card placeholder:font-card"
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
+                <svg
+                  className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </Button>
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
               </div>
+              <select className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white/50">
+                <option value="" className="bg-black">
+                  Gender
+                </option>
+                <option value="male" className="bg-black">
+                  Male
+                </option>
+                <option value="female" className="bg-black">
+                  Female
+                </option>
+                <option value="other" className="bg-black">
+                  Other
+                </option>
+                <option value="prefer-not-to-say" className="bg-black">
+                  Prefer not to say
+                </option>
+              </select>
+            </div>
 
-              {/* Confirm Password */}
-              <div className="relative space-y-2">
-                <Input
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm Password"
-                  className="bg-transparent border-white/50 text-white placeholder:text-white/50 focus:border-white focus:ring-white/50 h-12 pr-12 font-card placeholder:font-card"
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
+            {/* College Name */}
+            <input
+              type="text"
+              placeholder="E.g. College name like ITB, DAICT, Nirma university"
+              className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
 
-              {/* Get OTP Button */}
-              <Button
-                type="submit"
-                className="w-full bg-white text-black hover:bg-gray-100 font-semibold text-lg h-12 rounded-md transition-colors mt-6"
-                size="lg"
+            {/* Email */}
+            <input
+              type="email"
+              placeholder="E.g. rsharma@gmail.com"
+              className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
+
+            {/* Password */}
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
               >
-                Verify & Continue →
-              </Button>
+                {showPassword ? (
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                ) : (
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
 
-              {/* Login Link */}
-              <p className="text-center text-white/80 text-sm mt-6 font-card">
-                Already have an account?{" "}
-                <Link
-                  href="/login"
-                  className="text-red-500 hover:text-red-400 font-semibold transition-colors"
-                >
-                  Log In
-                </Link>
-              </p>
-            </CardContent>
-          </Card>
+            {/* Confirm Password */}
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-md text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
+              >
+                {showConfirmPassword ? (
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                ) : (
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            {/* Get OTP Button */}
+            <button className="w-full bg-white text-black hover:bg-gray-100 text-2xl h-12 rounded-md transition-colors cursor-pointer font-jqka">
+              Get OTP
+            </button>
+
+            {/* Login Link */}
+            <p className="text-center text-white text-sm font-sans">
+              If you already have an account?{" "}
+              <Link href="/login" className="text-red-500 hover:text-red-400 font-poppins font-semibold">
+                Log In
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

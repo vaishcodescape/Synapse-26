@@ -338,7 +338,7 @@ export const NavbarButton = <T extends React.ElementType = "a">({
     gradient:
       "bg-transparent text-white border-2 border-white shadow-[6px_6px_0px_#EB0000] hover:bg-[#EB0000] hover:text-black hover:border-black hover:shadow-[6px_6px_0px_rgba(255,255,255,0.7)] hover:-translate-y-0.5 hover:scale-105",
     register:
-      "text-[clamp(1.25rem,4vw,1.875rem)] border-[5px] border-white rounded-[10px] bg-transparent text-white shadow-[10px_10px_0px_#EB0000] hover:bg-[#EB0000] hover:text-black hover:border-black hover:scale-105 hover:shadow-[10px_10px_0px_rgba(255,255,255,0.7)] font-normal font-jakass",
+      "text-[clamp(1.25rem,4vw,1.875rem)] border-[5px] border-white rounded-[10px] bg-transparent text-white shadow-[10px_10px_0px_#EB0000] hover:bg-[#EB0000] hover:text-black hover:border-black hover:scale-105 hover:shadow-[10px_10px_0px_rgba(255,255,255,0.7)] font-normal font-jqka",
   };
 
   return React.createElement(

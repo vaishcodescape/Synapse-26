@@ -22,19 +22,23 @@ export default function LoginPage() {
       {/* Left Side - Joker Card Image */}
       <div className="relative hidden md:flex md:w-1/2 bg-[#1a1a1a]">
         {/* Dice Logo */}
+        {/* <CHANGE> added horizontal gradient overlay to soften the boundary between image and form */}
+   
         <div className="absolute top-8 left-8 z-10">
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="/synapselogo.png">
-            <path d="M30 5L50 15V35L30 45L10 35V15L30 5Z" stroke="white" strokeWidth="2" fill="none" />
-            <circle cx="30" cy="25" r="3" fill="white" />
-            <circle cx="20" cy="20" r="2" fill="white" />
-            <circle cx="40" cy="20" r="2" fill="white" />
-            <circle cx="20" cy="30" r="2" fill="white" />
-            <circle cx="40" cy="30" r="2" fill="white" />
-          </svg>
-        </div>
+                  <div className="relative w-16 h-16">
+                    <Image
+                      src="/Synapse Logo.png"
+                      alt="Synapse Logo"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
 
         {/* Joker Card Background Image */}
         <Image src="/joker.jpg" alt="Joker Card" fill className="object-cover" priority />
+         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-r from-transparent to-black pointer-events-none" />
       </div>
 
       {/* Right Side - Login Form */}
@@ -42,12 +46,12 @@ export default function LoginPage() {
         <div className="w-full max-w-[515px]">
           {/* Title - Using Bebas Neue font, larger size */}
           <h1
-            className="text-center text-white text-[40px] md:text-[50px] leading-[1.1] font-card mb-16 tracking-wide"
+            className="text-center text-white text-[40px] md:text-[50px] leading-[1.1] font-joker mb-16 tracking-wide"
         
           >
-            WELCOME BACK TO
+            welcome back to
             <br />
-            THE GAME
+            the game
           </h1>
 
           {/* Login Form - 24px gap between elements as per Figma specs */}
@@ -56,10 +60,10 @@ export default function LoginPage() {
             <div>
               <input
                 type="email"
-                placeholder="E.g. username@gmail.com"
+                placeholder="E.g. rsharma@gmail.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3.5 bg-transparent border border-white rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all text-base"
+                className="w-full px-4 py-3.5 bg-transparent border border-white rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all text-base font-poppins"
                 required
               />
             </div>
@@ -119,8 +123,7 @@ export default function LoginPage() {
             <div className="text-right">
               <Link
                 href="/forgot-password"
-                className="text-white/80 text-sm underline hover:text-white transition-colors"
-                style={{ fontFamily: "Roboto, sans-serif" }}
+                className="text-white/80 text-sm underline hover:text-white transition-colors font-poppins"
               >
                 Forgotten your password?
               </Link>
@@ -129,15 +132,15 @@ export default function LoginPage() {
             {/* Continue Button - White background, black text, proper spacing */}
             <button
               type="submit"
-              className="w-full bg-white text-black py-3.5 rounded-md font-semibold hover:bg-white/90 transition-colors text-base mt-2"
+              className="w-full bg-white text-black py-3.5 rounded-md text-2xl hover:bg-white/90 transition-colors mt-2 font-jqka cursor-pointer"
             >
               Continue
             </button>
 
             {/* Sign Up Link - Red color for "Sign up" link */}
-            <p className="text-center text-white/70 text-base mt-4">
+            <p className="text-center text-white/70 text-base mt-4 font-sans">
               Don't have an account?{" "}
-              <Link href="/register" className="text-[#dc2626] hover:underline font-medium">
+              <Link href="/register" className="text-[#dc2626] hover:underline font-poppins font-medium">
                 Sign up
               </Link>
             </p>

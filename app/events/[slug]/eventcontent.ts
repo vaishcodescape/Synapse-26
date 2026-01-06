@@ -20,7 +20,7 @@ export const EVENT_PAGES: Record<string, EventPageConfig> = {
         cards: [
             {
                 image: "/images_events/dance/1.png",
-                name: "Raaga & Rhapsody",
+                name: "Footloose",
                 description: [
                     "An expressive dance event blending rhythm, emotion, and storytelling."
                 ],
@@ -34,7 +34,7 @@ export const EVENT_PAGES: Record<string, EventPageConfig> = {
             },
             {
                 image: "/images_events/dance/2.png",
-                name: "Rap Battle",
+                name: "Naach",
                 description: [
                     "A lyrical face-off testing flow, punchlines, and stage presence."
                 ],
@@ -47,7 +47,7 @@ export const EVENT_PAGES: Record<string, EventPageConfig> = {
             },
             {
                 image: "/images_events/dance/3.png",
-                name: "Rave Knight",
+                name: "Showdown",
                 description: [
                     "High-energy DJ and freestyle dance showdown."
                 ],
@@ -169,7 +169,7 @@ export const EVENT_PAGES: Record<string, EventPageConfig> = {
         cards: [
             {
                 image: "/images_events/gaming/1.png",
-                name: "Valorant",
+                name: "Battledrome",
                 description: [
                     "Competitive tactical FPS tournament."
                 ],

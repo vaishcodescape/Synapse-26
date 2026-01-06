@@ -3,7 +3,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Tilt from "react-parallax-tilt";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,9 +18,7 @@ export default function JokerSection() {
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const scrollHintRef = useRef<HTMLDivElement>(null);
     const exploreTitleRef = useRef<HTMLHeadingElement>(null);
-    const exploreWordRef = useRef<HTMLSpanElement>(null);
     const fullImageRef = useRef<HTMLDivElement>(null);
-    const eventsWordRef = useRef<HTMLSpanElement>(null);
 
     const generateViewportPath = useCallback(() => {
         if (typeof window === 'undefined') return '';
@@ -342,10 +339,10 @@ export default function JokerSection() {
         }
     })
     const cards = [
-        { id: 'c1', name: 'Ace of Heart', image: '/Ace_Heart.png', day: 'Day 1', isRed: true },
-        { id: 'c2', name: 'Ace of Clubs', image: '/Ace_Clubs.png', day: 'Day 2' },
-        { id: 'c3', name: 'Ace of Diamond', image: '/Ace_Diamond.png', day: 'Day 3', isRed: true },
-        { id: 'c4', name: 'Ace of Spades', image: '/Ace_Spades.png', day: 'Day 4' },
+        { id: 'c1', name: 'Ace of Heart', image: '/images_home/Ace_Heart.png', day: 'Day 1', isRed: true },
+        { id: 'c2', name: 'Ace of Clubs', image: '/images_home/Ace_Clubs.png', day: 'Day 2' },
+        { id: 'c3', name: 'Ace of Diamond', image: '/images_home/Ace_Diamond.png', day: 'Day 3', isRed: true },
+        { id: 'c4', name: 'Ace of Spades', image: '/images_home/Ace_Spades.png', day: 'Day 4' },
     ];
 
     return (
@@ -356,13 +353,13 @@ export default function JokerSection() {
         >
             <div className="joker-content relative top-0 h-screen overflow-hidden">
                 <div className="viewport-wrapper absolute inset-0 flex overflow-hidden z-10">
-                    
+
                     <div
                         className="door door-left absolute top-0 w-1/2 h-full bg-white z-100"
                         id="leftDoor"
                         ref={leftDoorRef}
                         style={{
-                            background: "white url('/left.png') no-repeat right center",
+                            background: "white url('/images_home/left.png') no-repeat right center",
                             backgroundSize: 'contain'
                         }}
                     >
@@ -388,7 +385,7 @@ export default function JokerSection() {
                         id="rightDoor"
                         ref={rightDoorRef}
                         style={{
-                            background: "white url('/right.png') no-repeat left center",
+                            background: "white url('/images_home/right.png') no-repeat left center",
                             backgroundSize: 'contain'
                         }}
                     >
@@ -485,14 +482,14 @@ export default function JokerSection() {
                                         <div
                                             className="card-back absolute inset-0 backface-hidden rounded-lg lowercase shadow-[0_15px_35px_rgba(0,0,0,0.6)] font-joker flex flex-col gap-4 items-center justify-center p-8 text-center"
                                             style={{
-                                                background: "url('/card_back.png') no-repeat center center",
+                                                background: "url('/images_home/card_back.png') no-repeat center center",
                                                 backgroundSize: 'contain',
                                                 backfaceVisibility: 'hidden',
                                                 transform: 'rotateY(180deg)'
                                             }}
                                         >
                                             <h2 className="text-black text-3xl font-bold">{card.day}</h2>
-                                            <h2 className={card.isRed ? 'text-[#cf0000] font-jakass text-4xl font-bold' : 'text-black text-4xl font-jakass font-bold'}>{card.name}</h2>
+                                            <h2 className={card.isRed ? 'text-[#cf0000] font-jqka text-4xl font-bold' : 'text-black text-4xl font-jqka font-bold'}>{card.name}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -898,10 +895,10 @@ export default function JokerSection() {
 //     }, [setupPaths]);
 
 //     const cards = [
-//         { id: 'c1', name: 'Ace of Heart', image: '/Ace_Heart.png', day: 'Day 1', isRed: true },
-//         { id: 'c2', name: 'Ace of Clubs', image: '/Ace_Clubs.png', day: 'Day 2' },
-//         { id: 'c3', name: 'Ace of Diamond', image: '/Ace_Diamond.png', day: 'Day 3', isRed: true },
-//         { id: 'c4', name: 'Ace of Spades', image: '/Ace_Spades.png', day: 'Day 4' },
+//         { id: 'c1', name: 'Ace of Heart', image: '/images_home/Ace_Heart.png', day: 'Day 1', isRed: true },
+//         { id: 'c2', name: 'Ace of Clubs', image: '/images_home/Ace_Clubs.png', day: 'Day 2' },
+//         { id: 'c3', name: 'Ace of Diamond', image: '/images_home/Ace_Diamond.png', day: 'Day 3', isRed: true },
+//         { id: 'c4', name: 'Ace of Spades', image: '/images_home/Ace_Spades.png', day: 'Day 4' },
 //     ];
 
 //     return (
@@ -935,7 +932,7 @@ export default function JokerSection() {
 //   className="fixed inset-0 z-[101] flex items-center justify-center bg-white"
 // >
 //   <img
-//     src="/fullsvg.svg"
+//     src="/images_home/fullsvg.svg"
 //     alt="Full SVG"
 //     className="w-[60%] max-w-[600px] h-auto object-contain translate-y-[140px] translate-x-[450px]"
 //   /> */}
@@ -961,7 +958,7 @@ export default function JokerSection() {
 //       glareEnable={false}
 //     >
 //       <img
-//         src="/fullsvg.svg"
+//         src="/images_home/fullsvg.svg"
 //         alt="Full SVG"
 //         className="
 //           w-[60%]
@@ -1005,7 +1002,7 @@ export default function JokerSection() {
 //                         id="leftDoor"
 //                         ref={leftDoorRef}
 //                         style={{
-//                             background: "white url('/left.png') no-repeat right center",
+//                             background: "white url('/images_home/left.png') no-repeat right center",
 //                             backgroundSize: 'contain'
 //                         }}
 //                     >
@@ -1033,7 +1030,7 @@ export default function JokerSection() {
 //                         id="rightDoor"
 //                         ref={rightDoorRef}
 //                         style={{
-//                             background: "white url('/right.png') no-repeat left center",
+//                             background: "white url('/images_home/right.png') no-repeat left center",
 //                             backgroundSize: 'contain'
 //                         }}
 //                     >
@@ -1182,7 +1179,7 @@ export default function JokerSection() {
 //                                         <div
 //                                             className="card-back absolute inset-0 backface-hidden rounded-lg lowercase shadow-[0_15px_35px_rgba(0,0,0,0.6)] font-joker flex flex-col gap-4 items-center justify-center p-8 text-center"
 //                                             style={{
-//                                                 background: "url('/card_back.png') no-repeat center center",
+//                                                 background: "url('/images_home/card_back.png') no-repeat center center",
 //                                                 backgroundSize: 'contain',
 //                                                 backfaceVisibility: 'hidden',
 //                                                 transform: 'rotateY(180deg)'

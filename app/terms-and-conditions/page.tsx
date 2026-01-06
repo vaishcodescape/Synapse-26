@@ -18,7 +18,7 @@ const TERMS_CONTENT = [
     {
         title: "Behavioral Expectations",
         points: [
-            "Synapse’25 is a safe and inclusive space for everyone.",
+            "Synapse’26 is a safe and inclusive space for everyone.",
             "Any form of nuisance, harassment, or vandalism will not be tolerated.",
             "Attendees may face immediate removal and legal consequences.",
         ],
@@ -75,8 +75,8 @@ export default function Terms() {
                     Terms & Conditions
                 </h1>
 
-                <p className="mb-10 sm:mb-14 lg:mb-16 max-w-[1000px] text-sm sm:text-base lg:text-[25px] leading-relaxed text-[#e6e6e6] font-poppins">
-                    Welcome to Synapse’25! To ensure an enjoyable and hassle-free experience
+                <p className="mb-10 sm:mb-14 lg:mb-16 max-w-[1000px] text-sm sm:text-base lg:text-[26px] leading-relaxed text-[#e6e6e6] font-poppins">
+                    Welcome to Synapse’26! To ensure an enjoyable and hassle-free experience
                     for all attendees, please carefully read and adhere to the following
                     terms and conditions:
                 </p>
