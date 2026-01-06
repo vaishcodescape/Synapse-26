@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bebas_Neue, Inter, Roboto, Poppins } from "next/font/google";
 import { SmoothScroller } from "@/components/ui/SmoothScroller";
+import Script from 'next/script'
 import "./globals.css";
 import FluidCanvas from "@/components/FluidCanvas";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${inter.variable} ${roboto.variable} ${poppins.variable} antialiased bg-black`}
       >
