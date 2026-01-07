@@ -74,6 +74,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* Ignore warning: @theme is valid Tailwind v4 syntax */
 @theme inline {
   --font-sans: "Inter", "Geist", "Geist Fallback", system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
