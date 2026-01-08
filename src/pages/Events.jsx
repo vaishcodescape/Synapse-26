@@ -7,6 +7,7 @@ const Events = () => {
       name: 'Hackathon 2025',
       category: 'Technical',
       date: '2025-12-20',
+      time: '10:00', // NEW
       rulebookLink: 'https://drive.google.com/...',
       imageUrl: '',
       registrationOpen: true,
@@ -23,6 +24,7 @@ const Events = () => {
       name: 'Dance Battle',
       category: 'Cultural',
       date: '2025-12-21',
+      time: '18:30', // NEW
       rulebookLink: 'https://drive.google.com/...',
       imageUrl: '',
       registrationOpen: false,
@@ -41,6 +43,7 @@ const Events = () => {
     name: '',
     category: 'Technical',
     date: '',
+    time: '', // NEW
     rulebookLink: '',
     description: '',
     venue: '', // NEW
@@ -59,7 +62,7 @@ const Events = () => {
       ...events,
       {
         id: Date.now(),
-        ...formData, // includes venue
+        ...formData, // includes venue + time
         imageUrl: '',
         registrationOpen: true,
         freeForDau: false, // default: not free for DAU
@@ -74,6 +77,7 @@ const Events = () => {
       name: '',
       category: 'Technical',
       date: '',
+      time: '', // reset
       rulebookLink: '',
       description: '',
       venue: '', // reset
@@ -238,6 +242,22 @@ const Events = () => {
             />
           </div>
 
+          {/* NEW Time field */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Time
+            </label>
+            <input
+              type="time"
+              value={formData.time}
+              onChange={(e) =>
+                setFormData({ ...formData, time: e.target.value })
+              }
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
           {/* NEW Venue field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -324,6 +344,10 @@ const Events = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                   Date
                 </th>
+                {/* NEW Time column */}
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Time
+                </th>
                 {/* NEW Venue column */}
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                   Venue
@@ -377,6 +401,11 @@ const Events = () => {
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
                     {event.date}
+                  </td>
+
+                  {/* NEW Time cell */}
+                  <td className="px-6 py-4 text-sm text-gray-500">
+                    {event.time}
                   </td>
 
                   {/* NEW Venue cell */}
@@ -480,6 +509,20 @@ const Events = () => {
                     required
                   />
                 </div>
+              </div>
+
+              {/* NEW Time in edit modal */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Time
+                </label>
+                <input
+                  type="time"
+                  value={editingEvent.time || ''}
+                  onChange={(e) => handleEditChange('time', e.target.value)}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+                  required
+                />
               </div>
 
               {/* NEW Venue in edit modal */}
