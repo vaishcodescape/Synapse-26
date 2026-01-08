@@ -11,6 +11,7 @@ const Events = () => {
       imageUrl: '',
       registrationOpen: true,
       freeForDau: true, // DAU students free for this event
+      venue: 'Auditorium A', // NEW
       participationCategories: {
         solo: { enabled: true, fee: 100 },
         duet: { enabled: true, fee: 200 },
@@ -26,6 +27,7 @@ const Events = () => {
       imageUrl: '',
       registrationOpen: false,
       freeForDau: false, // normal charges for everyone
+      venue: 'Main Stage', // NEW
       participationCategories: {
         solo: { enabled: true, fee: 150 },
         duet: { enabled: true, fee: 250 },
@@ -41,6 +43,7 @@ const Events = () => {
     date: '',
     rulebookLink: '',
     description: '',
+    venue: '', // NEW
   });
 
   // Edit modal state
@@ -56,7 +59,7 @@ const Events = () => {
       ...events,
       {
         id: Date.now(),
-        ...formData,
+        ...formData, // includes venue
         imageUrl: '',
         registrationOpen: true,
         freeForDau: false, // default: not free for DAU
@@ -73,6 +76,7 @@ const Events = () => {
       date: '',
       rulebookLink: '',
       description: '',
+      venue: '', // reset
     });
   };
 
@@ -233,6 +237,24 @@ const Events = () => {
               required
             />
           </div>
+
+          {/* NEW Venue field */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Venue
+            </label>
+            <input
+              type="text"
+              value={formData.venue}
+              onChange={(e) =>
+                setFormData({ ...formData, venue: e.target.value })
+              }
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="Auditorium A, Ground, etc."
+              required
+            />
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Event Picture
@@ -302,6 +324,10 @@ const Events = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                   Date
                 </th>
+                {/* NEW Venue column */}
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Venue
+                </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                   Rulebook
                 </th>
@@ -352,6 +378,12 @@ const Events = () => {
                   <td className="px-6 py-4 text-sm text-gray-500">
                     {event.date}
                   </td>
+
+                  {/* NEW Venue cell */}
+                  <td className="px-6 py-4 text-sm text-gray-900">
+                    {event.venue}
+                  </td>
+
                   <td className="px-6 py-4 text-sm">
                     {event.rulebookLink && (
                       <a
@@ -448,6 +480,21 @@ const Events = () => {
                     required
                   />
                 </div>
+              </div>
+
+              {/* NEW Venue in edit modal */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Venue
+                </label>
+                <input
+                  type="text"
+                  value={editingEvent.venue || ''}
+                  onChange={(e) => handleEditChange('venue', e.target.value)}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Auditorium A, Ground, etc."
+                  required
+                />
               </div>
 
               {/* Participation Categories with Checkboxes */}
